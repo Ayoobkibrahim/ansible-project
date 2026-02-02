@@ -3,3 +3,4 @@ app_port: 3000
 
 app_user: ayoob
 app_dir: /opt/nodeapp
+app_repo: https://github.com/heroku/node-js-getting-started.git

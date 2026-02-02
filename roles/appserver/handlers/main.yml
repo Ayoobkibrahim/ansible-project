@@ -1,6 +1,6 @@
 ---
 - name: Reload systemd
-  command: systemctl daemon-reexec
+  command: systemctl daemon-reload
 
 
 - name: Restart nodeapp

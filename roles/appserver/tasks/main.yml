@@ -6,9 +6,11 @@
     shell: /bin/bash
 
   
-- name: Install Node.js
+- name: Install Node.js and npm
   apt:
-    name: nodejs
+    name:
+      - nodejs
+      - npm
     state: present
     update_cache: yes
 
@@ -20,16 +22,18 @@
     group: "{{ app_user }}"
     mode: '0755'
 
-- name: Copy Node.js application
-  copy:
-    src: files/app.js
-    dest: "{{ app_dir }}/app.js"
-    owner: "{{ app_user }}"
-    group: "{{ app_user }}"
-    mode: '0644'
-  notify:
-    - Reload systemd
-    - Restart nodeapp
+- name: Clone application repository
+  git:
+    repo: "{{ app_repo }}"
+    dest: "{{ app_dir }}"
+    force: yes
+  become_user: "{{ app_user }}"
+
+- name: Install npm dependencies
+  npm:
+    path: "{{ app_dir }}"
+    production: yes
+  become_user: "{{ app_user }}"
 
 
 - name: Deploy systemd service

@@ -1,15 +1,14 @@
 [Unit]
-Description=Simple Node.js Application
+Description=Node.js Application
 After=network.target
 
 [Service]
 Type=simple
 User={{ app_user }}
 WorkingDirectory={{ app_dir }}
-Environment=APP_USERNAME={{ app_username }}
-Environment=APP_PASSWORD={{ app_password }}
-ExecStart=/usr/bin/node {{ app_dir }}/app.js
+ExecStart=/usr/bin/npm start
 Restart=always
+Environment=PORT={{ app_port }}
 
 [Install]
 WantedBy=multi-user.target
