@@ -12,13 +12,6 @@
     state: present
     update_cache: yes
 
-
-- name: Install npm
-  apt:
-    name: npm
-    state: present
-
-
 - name: Create application directory
   file:
     path: "{{ app_dir }}"
