@@ -1,0 +1,6 @@
+app_name: nodejs-app
+app_port: 3000
+
+db_name: "{{ db_name }}"
+db_user: "{{ db_user }}"
+db_password: "{{ db_password }}"

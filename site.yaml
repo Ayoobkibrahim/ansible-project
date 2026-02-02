@@ -1,0 +1,21 @@
+---
+
+- name: Common configuration on all nodes
+  hosts: all
+  become: true
+  roles:
+    - common
+
+
+- name: Web server configuration
+  hosts: web
+  become: true
+  roles:
+    - webserver
+
+
+- name: App server configuration
+  hosts: app
+  become: true
+  roles:
+    - appserver
