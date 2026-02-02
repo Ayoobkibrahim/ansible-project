@@ -1,0 +1,48 @@
+---
+- name: Create application user
+  user:
+    name: "{{ app_user }}"
+    system: yes
+    shell: /bin/bash
+
+  
+- name: Install Node.js
+  apt:
+    name: nodejs
+    state: present
+    update_cache: yes
+
+
+- name: Install npm
+  apt:
+    name: npm
+    state: present
+
+
+- name: Create application directory
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: '0755'
+
+- name: Copy Node.js application
+  copy:
+    src: files/app.js
+    dest: "{{ app_dir }}/app.js"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: '0644'
+  notify:
+    - Reload systemd
+    - Restart nodeapp
+
+
+- name: Deploy systemd service
+  template:
+    src: nodeapp.service.j2
+    dest: /etc/systemd/system/nodeapp.service
+  notify:
+    - Reload systemd
+    - Restart nodeapp

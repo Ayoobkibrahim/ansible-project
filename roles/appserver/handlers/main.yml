@@ -1,0 +1,10 @@
+---
+- name: Reload systemd
+  command: systemctl daemon-reexec
+
+
+- name: Restart nodeapp
+  service:
+    name: nodeapp
+    state: restarted
+    enabled: true
