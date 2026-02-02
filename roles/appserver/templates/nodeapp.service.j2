@@ -6,7 +6,9 @@ After=network.target
 Type=simple
 User={{ app_user }}
 WorkingDirectory={{ app_dir }}
-ExecStart=/usr/bin/node /opt/nodeapp/app.js
+Environment=APP_USERNAME={{ app_username }}
+Environment=APP_PASSWORD={{ app_password }}
+ExecStart=/usr/bin/node {{ app_dir }}/app.js
 Restart=always
 
 [Install]
