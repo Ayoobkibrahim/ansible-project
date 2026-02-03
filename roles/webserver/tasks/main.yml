@@ -3,7 +3,6 @@
   apt:
    name: "{{ nginx_package }}"
    state: present
-   update_cache: yes
 
 
 - name: Deploy Nginx reverse proxy config

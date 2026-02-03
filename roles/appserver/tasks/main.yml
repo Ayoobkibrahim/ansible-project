@@ -12,7 +12,6 @@
       - nodejs
       - npm
     state: present
-    update_cache: yes
 
 - name: Create application directory
   file:
