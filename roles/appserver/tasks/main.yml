@@ -27,12 +27,16 @@
     dest: "{{ app_dir }}"
     force: yes
   become_user: "{{ app_user }}"
+  notify:
+    - Restart nodeapp
 
 - name: Install npm dependencies
   npm:
     path: "{{ app_dir }}"
     production: yes
   become_user: "{{ app_user }}"
+  notify:
+    - Restart nodeapp
 
 
 - name: Deploy systemd service
