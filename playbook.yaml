@@ -1,5 +1,4 @@
 ---
-
 - name: Common configuration on all nodes
   hosts: all
   become: true
