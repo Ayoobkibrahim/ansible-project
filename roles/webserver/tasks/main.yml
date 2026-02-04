@@ -6,11 +6,9 @@
 
 
 - name: Deploy Nginx reverse proxy config
-  copy:
-    # src: nginx.conf.j2
-    # dest: /etc/nginx/sites-available/default
-    src: index.html
-    dest: /var/www/html/index.html
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
   notify: Restart nginx
 
 
